@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": [
+      "esnext"
+    ],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "**/dist/**",
+    "**/node_modules/**",
+    "eslint.config.mjs"
+  ]
+}

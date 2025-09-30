@@ -1,0 +1,89 @@
+{
+  "name": "unocss-preset-nuxt-ui",
+  "type": "module",
+  "version": "4.0.0",
+  "description": "The preset that makes using UnoCSS with Nuxt UI effortless",
+  "author": "lehuuphuc <https://github.com/lehuuphuc>",
+  "license": "MIT",
+  "homepage": "https://github.com/lehuuphuc/unocss-preset-nuxt-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lehuuphuc/unocss-preset-nuxt-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lehuuphuc/unocss-preset-nuxt-ui/issues"
+  },
+  "keywords": [
+    "preset",
+    "unocss",
+    "unocss-preset",
+    "nuxt-ui",
+    "unocss-preset-nuxt-ui"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "prepublishOnly": "bun run build",
+    "release": "bumpp --commit --push --tag && bun publish",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "bun test",
+    "play": "nuxt dev playground",
+    "play:cleanup": "nuxt cleanup playground",
+    "play:prepare": "nuxt prepare playground",
+    "play:build": "nuxt generate playground",
+    "play:preview": "nuxt preview playground",
+    "deploy": "vite build playground",
+    "update-packages": "ncu -u"
+  },
+  "peerDependencies": {
+    "@unocss/core": "^66.5.2",
+    "@unocss/nuxt": "^66.5.2",
+    "@unocss/preset-wind4": "^66.5.2",
+    "defu": "^6.1.4",
+    "unocss": "^66.5.2"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^5.4.1",
+    "@babel/types": "^7.28.4",
+    "@iconify-json/lucide": "1.2.68",
+    "@nuxt/ui": "^4.0.0",
+    "@types/bun": "^1.2.23",
+    "@types/node": "^24.6.0",
+    "@unocss/eslint-plugin": "^66.5.2",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "bumpp": "^10.2.3",
+    "eslint": "^9.36.0",
+    "eslint-import-resolver-node": "^0.3.9",
+    "nuxt": "^4.1.2",
+    "sass-embedded": "^1.93.2",
+    "tsdown": "^0.15.5",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.7",
+    "vue": "^3.5.22"
+  },
+  "overrides": {
+    "vite": "npm:rolldown-vite@latest"
+  }
+}
