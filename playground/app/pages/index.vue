@@ -38,9 +38,9 @@ function handleToggleDarkMode() {
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 items-center">
+  <div class="flex flex-col items-center">
     <div class="text-center flex flex-col">
-      <h1 class="text-3xl font-bold">
+      <h1 class="text-3xl font-bold mt-6xl">
         UnoCSS Preset Nuxt UI
       </h1>
       <p class="text-dimmed">
@@ -63,7 +63,7 @@ function handleToggleDarkMode() {
       </p>
     </div>
 
-    <div class="mt-12 flex gap-4 items-center justify-center">
+    <div class="mt-6xl flex gap-lg items-center justify-center">
       <UButton
         variant="soft"
         color="neutral"
@@ -95,13 +95,13 @@ function handleToggleDarkMode() {
       />
     </div>
 
-    <div class="mt-12 flex flex-wrap gap-4 items-center justify-center">
+    <div class="mt-6xl flex flex-wrap gap-lg items-center justify-center">
       <UButton v-for="color in colors" :key="color" :color="color">
         {{ upperFirst(color) }}
       </UButton>
     </div>
 
-    <div class="flex flex-wrap gap-4 items-center justify-center">
+    <div class="mt-lg flex flex-wrap gap-lg items-center justify-center">
       <UButton
         v-for="variant in buttonVariants"
         :key="variant"
@@ -115,7 +115,7 @@ function handleToggleDarkMode() {
       </UButton>
     </div>
 
-    <div class="mt-12 flex flex-wrap gap-4 max-w-200 items-center justify-center">
+    <div class="mt-6xl flex flex-wrap gap-lg max-w-200 items-center justify-center">
       <USelect
         v-for="variant in selectVariants"
         :key="variant"

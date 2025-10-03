@@ -1,7 +1,7 @@
 {
   "name": "unocss-preset-nuxt-ui",
   "type": "module",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "The preset that makes using UnoCSS with Nuxt UI effortless",
   "author": "lehuuphuc <https://github.com/lehuuphuc>",
   "license": "MIT",
@@ -45,7 +45,7 @@
     "build": "tsdown",
     "dev": "tsdown --watch",
     "prepublishOnly": "bun run build",
-    "release": "bumpp --commit --push --tag && bun publish",
+    "release": "npm publish --access public",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "bun test",
@@ -68,9 +68,9 @@
     "@antfu/eslint-config": "^5.4.1",
     "@babel/types": "^7.28.4",
     "@iconify-json/lucide": "1.2.68",
-    "@nuxt/ui": "^4.0.0",
+    "@nuxt/ui": "^4.0.1",
     "@types/bun": "^1.2.23",
-    "@types/node": "^24.6.0",
+    "@types/node": "^24.6.2",
     "@unocss/eslint-plugin": "^66.5.2",
     "@vitejs/plugin-vue": "^6.0.1",
     "bumpp": "^10.2.3",
@@ -78,12 +78,9 @@
     "eslint-import-resolver-node": "^0.3.9",
     "nuxt": "^4.1.2",
     "sass-embedded": "^1.93.2",
-    "tsdown": "^0.15.5",
-    "typescript": "^5.9.2",
-    "vite": "^7.1.7",
+    "tsdown": "^0.15.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9",
     "vue": "^3.5.22"
-  },
-  "overrides": {
-    "vite": "npm:rolldown-vite@latest"
   }
 }
