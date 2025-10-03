@@ -1,4 +1,4 @@
-import type { Preset, RuleContext } from '@unocss/core';
+import type { Preset, RuleContext, UtilObject } from '@unocss/core';
 import type { Theme } from '@unocss/preset-wind4';
 import { definePreset } from '@unocss/core';
 import {
@@ -82,11 +82,6 @@ export default definePreset((options: PresetOptions = {}) => {
   --ui-border-muted: var(--ui-color-neutral-700);
   --ui-border-accented: var(--ui-color-neutral-700);
   --ui-border-inverted: var(--color-white);
-}
-
-::after,
-::before {
-  content: var(--un-content, "");
 }
 /* unocss-nuxt-ui preflight end */`;
             },
@@ -729,5 +724,19 @@ export default definePreset((options: PresetOptions = {}) => {
         };
       },
     ],
+    postprocess: [postProcessFn],
   };
 });
+
+function postProcessFn(util: UtilObject) {
+  if (util.layer === 'properties') {
+    return;
+  }
+
+  if (
+    (util.selector.includes('before\\:') || util.selector.includes('after\\:'))
+    && !(util.entries.find(i => i[0] === 'content') || util.entries.find(i => i[0] === '--un-content'))
+  ) {
+    util.entries.push(['content', 'var(--un-content)']);
+  }
+}

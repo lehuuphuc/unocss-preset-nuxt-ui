@@ -660,6 +660,30 @@ const testCases: TestCase[] = [
 }"
 `,
   },
+  {
+    name: 'before/after',
+    classes: [
+      'before:text-red',
+      'dark:after:text-red',
+      `before:content-['Hello']`,
+    ],
+    snapshot: `
+"/* layer: properties */
+@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))){*, ::before, ::after, ::backdrop{--un-content:"";--un-text-opacity:100%;}}
+@property --un-text-opacity{syntax:"<percentage>";inherits:false;initial-value:100%;}
+@property --un-content{syntax:"*";inherits:false;initial-value:"";}
+/* layer: theme */
+:root, :host { --colors-red-DEFAULT: oklch(70.4% 0.191 22.216); }
+/* layer: default */
+.before\\:text-red::before{color:color-mix(in srgb, var(--colors-red-DEFAULT) var(--un-text-opacity), transparent);content:var(--un-content);}
+.dark .dark\\:after\\:text-red::after{color:color-mix(in srgb, var(--colors-red-DEFAULT) var(--un-text-opacity), transparent);content:var(--un-content);}
+.before\\:content-\\[\\'Hello\\'\\]::before{--un-content:'Hello';content:var(--un-content);}
+@supports (color: color-mix(in lab, red, red)){
+.before\\:text-red::before{color:color-mix(in oklab, var(--colors-red-DEFAULT) var(--un-text-opacity), transparent);content:var(--un-content);}
+.dark .dark\\:after\\:text-red::after{color:color-mix(in oklab, var(--colors-red-DEFAULT) var(--un-text-opacity), transparent);content:var(--un-content);}
+}"
+`,
+  },
 ];
 
 describe.each(testCases)('unocss-preset-nuxt-ui', (testCase) => {

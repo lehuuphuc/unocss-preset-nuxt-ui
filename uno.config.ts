@@ -4,8 +4,9 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss';
-// eslint-disable-next-line antfu/no-import-dist
-import presetNuxtUI from './dist';
+
+// import presetNuxtUI from './dist';
+import presetNuxtUI from './src';
 
 export const configData = {
   content: {
