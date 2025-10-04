@@ -30,6 +30,10 @@ export const configData = {
     transformerVariantGroup(),
   ],
   outputToCssLayers: true,
+  safelist: [
+    `before:content-['']`,
+    `after:content-['']`,
+  ],
 };
 
 export default defineConfig(configData);

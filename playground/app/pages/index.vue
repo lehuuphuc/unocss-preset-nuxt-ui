@@ -40,7 +40,7 @@ function handleToggleDarkMode() {
 <template>
   <div class="flex flex-col items-center">
     <div class="text-center flex flex-col">
-      <h1 class="text-3xl font-bold mt-6xl">
+      <h1 class="text-6xl font-bold mt-6xl">
         UnoCSS Preset Nuxt UI
       </h1>
       <p class="text-dimmed">
@@ -125,6 +125,20 @@ function handleToggleDarkMode() {
         class="w-48"
         aria-label="Select a fruit or a vegetable"
       />
+    </div>
+
+    <div class="mt-6xl">
+      <UButton
+        trailing-icon="i-lucide-external-link"
+        to="https://nuxt-ui-unocss-playground.netlify.app"
+        color="primary"
+        variant="link"
+        size="xs"
+        rel="noopener noreferrer"
+        class="underline decoration-dashed"
+      >
+        View Full Playground
+      </UButton>
     </div>
   </div>
 </template>

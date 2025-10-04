@@ -40,6 +40,10 @@ export default defineConfig({
     transformerVariantGroup(),
   ],
   outputToCssLayers: true,
+  safelist: [
+    `before:content-['']`,
+    `after:content-['']`,
+  ],
 });
 ```
 
