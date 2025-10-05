@@ -12,6 +12,7 @@ type ColorValue = string | Record<string, string>;
 export interface PresetOptions {
   colorSpace?: string
   preflights?: boolean | Preset['preflights']
+  safelist?: boolean
   theme?: {
     colors?: ColorValue
     textColors?: Record<string, string>
@@ -87,6 +88,12 @@ export default definePreset((options: PresetOptions = {}) => {
             },
           },
         ];
+  const safelist = options.safelist === false
+    ? undefined
+    : [
+        `before:content-['']`,
+        `after:content-['']`,
+      ];
   const theme = defu(options?.theme, {
     colors: {
       primary: {
@@ -724,6 +731,7 @@ export default definePreset((options: PresetOptions = {}) => {
         };
       },
     ],
+    safelist,
     postprocess: [postProcessFn],
   };
 });

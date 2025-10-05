@@ -14,7 +14,10 @@ function filterPreflightsContent(css: string) {
 async function createUno() {
   const uno = await createGenerator({
     presets: [
-      presetNuxtUI({ preflights: false }),
+      presetNuxtUI({
+        preflights: false,
+        safelist: false,
+      }),
       presetWind4({
         preflights: { reset: false, theme: 'on-demand' },
       }),

@@ -1,7 +1,7 @@
 {
   "name": "unocss-preset-nuxt-ui",
   "type": "module",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "The preset that makes using UnoCSS with Nuxt UI effortless",
   "author": "lehuuphuc <https://github.com/lehuuphuc>",
   "license": "MIT",
