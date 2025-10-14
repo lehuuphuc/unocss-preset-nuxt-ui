@@ -93,6 +93,7 @@ export default definePreset((options: PresetOptions = {}) => {
     : [
         `before:content-['']`,
         `after:content-['']`,
+        `translate-none`,
       ];
   const theme = defu(options?.theme, {
     colors: {
@@ -498,7 +499,7 @@ export default definePreset((options: PresetOptions = {}) => {
       [
         /^(text|bg|ring|caret|fill)-(--[\w-]+|\w+)(?:\/(\d+))?$/,
         ([full, prefix, color, opacity], configs) => {
-        // full class was transformed to text---xxx or bg---xxx by transformerVariantGroup
+          // full class was transformed to text---xxx or bg---xxx by transformerVariantGroup
           if (!full.startsWith(`${prefix}---`)) {
             return;
           }
@@ -530,6 +531,78 @@ export default definePreset((options: PresetOptions = {}) => {
             configs as any as RuleContext<Theme>,
           );
         },
+      ],
+      // transform-(--xxx), translate-x-(--xxx), translate-y-(--xxx), top-(--xxx), left-(--xxx), w-(--xxx), h-(--xxx), min-w-(--xxx), min-h-(--xxx), max-w-(--xxx), max-h-(--xxx), z-(--xxx), origin-(--xxx), gap-(--xxx)
+      [
+        /^(translate-x|translate-y|transform|top|left|right|bottom|[whz]|min-w|min-h|max-w|max-h|origin|gap)-(--[\w-]+|\w+)$/,
+        ([full, prefix, value]) => {
+          // full class was transformed to prefix---xxx by transformerVariantGroup
+          if (!full.startsWith(`${prefix}---`)) {
+            return;
+          }
+          let property: string;
+          if (prefix === 'translate-x') {
+            return {
+              '--un-translate-x': `var(${value})`,
+              'translate': `var(--un-translate-x) var(--un-translate-y)`,
+            };
+          }
+          else if (prefix === 'translate-y') {
+            return {
+              '--un-translate-y': `var(${value})`,
+              'translate': `var(--un-translate-x) var(--un-translate-y)`,
+            };
+          }
+          else if (prefix === 'w') {
+            property = 'width';
+          }
+          else if (prefix === 'h') {
+            property = 'height';
+          }
+          else if (prefix === 'z') {
+            property = 'z-index';
+          }
+          else if (prefix === 'min-w') {
+            property = 'min-width';
+          }
+          else if (prefix === 'min-h') {
+            property = 'min-height';
+          }
+          else if (prefix === 'max-w') {
+            property = 'max-width';
+          }
+          else if (prefix === 'max-h') {
+            property = 'max-height';
+          }
+          else if (prefix === 'origin') {
+            property = 'transform-origin';
+          }
+          else {
+            property = prefix;
+          }
+
+          return {
+            [property]: `var(${value})`,
+          };
+        },
+        { autocomplete: [
+          'translate-x-(--xxx)',
+          'translate-y-(--xxx)',
+          'transform-(--xxx)',
+          'top-(--xxx)',
+          'left-(--xxx)',
+          'right-(--xxx)',
+          'bottom-(--xxx)',
+          'w-(--xxx)',
+          'h-(--xxx)',
+          'z-(--xxx)',
+          'min-w-(--xxx)',
+          'min-h-(--xxx)',
+          'max-w-(--xxx)',
+          'max-h-(--xxx)',
+          'origin-(--xxx)',
+          'gap-(--xxx)',
+        ] },
       ],
       // transition-[background], transition-[color,translate], ...
       [

@@ -140,5 +140,26 @@ function handleToggleDarkMode() {
         View Full Playground
       </UButton>
     </div>
+
+    <div
+      :class="[
+        'translate-x-(--xxx)',
+        'translate-y-(--xxx)',
+        'transform-(--xxx)',
+        'top-(--xxx)',
+        'left-(--xxx)',
+        'right-(--xxx)',
+        'bottom-(--xxx)',
+        'w-(--xxx)',
+        'h-(--xxx)',
+        'z-(--xxx)',
+        'min-w-(--xxx)',
+        'min-h-(--xxx)',
+        'max-w-(--xxx)',
+        'max-h-(--xxx)',
+        'origin-(--xxx)',
+        'gap-(--xxx)',
+      ].join(' ')"
+    />
   </div>
 </template>
