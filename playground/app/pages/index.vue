@@ -159,6 +159,7 @@ function handleToggleDarkMode() {
         'max-h-(--xxx)',
         'origin-(--xxx)',
         'gap-(--xxx)',
+        '[--gap:--spacing(16)]',
       ].join(' ')"
     />
   </div>

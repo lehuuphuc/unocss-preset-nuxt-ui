@@ -46,6 +46,13 @@ export default defineConfig({
 ```scss
 // main.scss // must use *.scss file to avoid conflict with tailwindcss
 @use './keyframes.css'; // copy from node_modules/@nuxt/ui/dist/runtime/keyframes.css
+// preflight nuxt-ui gap classes
+.\[--gap\:--spacing\(4\)\] {
+  --gap: calc(var(--spacing) * 4);
+}
+.\[--gap\:--spacing\(16\)\] {
+  --gap: calc(var(--spacing) * 16);
+}
 ```
 
 ## Run playground

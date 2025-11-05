@@ -7,6 +7,14 @@ body {
   @apply bg-default text-default subpixel-antialiased;
 }
 
+// preflight nuxt-ui gap classes
+.\[--gap\:--spacing\(4\)\] {
+  --gap: calc(var(--spacing) * 4);
+}
+.\[--gap\:--spacing\(16\)\] {
+  --gap: calc(var(--spacing) * 16);
+}
+
 // overwrite green color
 :root {
   --color-green-50: #effdf5;

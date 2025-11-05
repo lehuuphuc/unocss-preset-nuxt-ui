@@ -616,6 +616,17 @@ export default definePreset((options: PresetOptions = {}) => {
         },
         { autocomplete: 'transition-[prop1,prop2]' },
       ],
+      // // [--gap:--spacing(xxx)]
+      // [
+      //   /^.*\[--gap:--spacing\((\d+)\)\]$/,
+      //   ([, factor]) => {
+      //     console.log('factor: ', factor);
+      //     return {
+      //       gap: `calc(var(--spacing) * ${factor})`,
+      //     };
+      //   },
+      //   { autocomplete: '--gap:--spacing(xxx)' },
+      // ],
     ],
     variants: [
       // data-xxx:...  -> ....[data-xxx] { ... }
