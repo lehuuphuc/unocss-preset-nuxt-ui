@@ -1,7 +1,7 @@
 {
   "name": "unocss-preset-nuxt-ui",
   "type": "module",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "The preset that makes using UnoCSS with Nuxt UI effortless",
   "author": "lehuuphuc <https://github.com/lehuuphuc>",
   "license": "MIT",
@@ -23,18 +23,18 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs"
     }
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
   "typesVersions": {
     "*": {
       "*": [
         "./dist/*",
-        "./dist/index.d.ts"
+        "./dist/index.d.mts"
       ]
     }
   },
@@ -78,11 +78,11 @@
     "bumpp": "^10.3.1",
     "eslint": "^9.39.1",
     "eslint-import-resolver-node": "^0.3.9",
-    "nuxt": "^4.2.0",
+    "nuxt": "^4.2.1",
     "sass-embedded": "^1.93.3",
     "tsdown": "^0.16.0",
     "typescript": "^5.9.3",
-    "vite": "^7.1.12",
-    "vue": "^3.5.22"
+    "vite": "^7.2.2",
+    "vue": "^3.5.24"
   }
 }
