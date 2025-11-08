@@ -10,13 +10,17 @@ export default defineNuxtModule({
       version: '>=4.0.1',
     },
   },
-  setup(options, nuxt) {
+  setup(_options, nuxt) {
     // Remove @tailwindcss/vite plugins added by Nuxt UI here: https://github.com/nuxt/ui/blob/v4/src/module.ts#L143
-    // It adds an array of three plugins.
+    // Plugins to be removed: @tailwindcss/vite:scan, @tailwindcss/vite:generate:serve, @tailwindcss/vite:generate:build
     nuxt.hook('vite:extend', async ({ config }) => {
       config.plugins ||= [];
       config.plugins = config.plugins.filter(
-        item => !Array.isArray(item) || !item.some(item => typeof item === 'object' && item?.name?.startsWith?.('@tailwindcss/vite')),
+        item => !Array.isArray(item)
+          || (!item.some(item => typeof item === 'object'
+            && item && 'name' in item
+            && typeof item.name === 'string'
+            && item.name.startsWith('@tailwindcss/vite'))),
       );
     });
   },

@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui',
     '@unocss/nuxt',
+    '~~/modules/unocss-preset-nuxt-ui',
   ],
   css: ['~/assets/styles/main.scss'],
   icon: {
