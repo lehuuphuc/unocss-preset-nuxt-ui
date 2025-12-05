@@ -1,7 +1,7 @@
 # UnoCSS Preset Nuxt UI [![npm](https://img.shields.io/npm/v/unocss-preset-nuxt-ui)](https://npmjs.com/package/unocss-preset-nuxt-ui)
 
 ## Features
-- 🔥 The preset that makes using UnoCSS with Nuxt UI effortless
+- This preset adds the necessary classes for Nuxt UI to function without tailwindcss.
 
 ## Usage
 ```shell
