@@ -62,6 +62,7 @@ function handleToggleDarkMode() {
         >Nuxt UI</a>
       </p>
     </div>
+    <!-- <img src="/logo.svg" class="size-20"> -->
 
     <div class="mt-6xl flex gap-lg items-center justify-center">
       <UButton
