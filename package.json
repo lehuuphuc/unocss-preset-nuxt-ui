@@ -60,11 +60,11 @@
     "remove:node-modules": "rm -rf node_modules playground/node_modules bun.lock"
   },
   "peerDependencies": {
-    "@unocss/core": "^66.5.2",
-    "@unocss/nuxt": "^66.5.2",
-    "@unocss/preset-wind4": "^66.5.2",
+    "@unocss/core": "^66.5.10",
+    "@unocss/nuxt": "^66.5.10",
+    "@unocss/preset-wind4": "^66.5.10",
     "defu": "^6.1.4",
-    "unocss": "^66.5.2"
+    "unocss": "^66.5.10"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^6.7.1",
