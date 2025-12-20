@@ -16,7 +16,7 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss';
-import presetNuxtUI from 'unocss-preset-nuxt-ui';
+import { presetNuxtUI, presetNuxtUIExtra } from 'unocss-preset-nuxt-ui';
 
 export default defineConfig({
   content: {
@@ -29,11 +29,12 @@ export default defineConfig({
     },
   },
   presets: [
-    presetNuxtUI(),
+    presetNuxtUI(), // must be before presetWind4
     presetWind4({
       preflights: { reset: true, theme: 'on-demand' },
       dark: { dark: '.dark', light: '.light' },
     }),
+    presetNuxtUIExtra(), // must be after presetWind4
   ],
   transformers: [
     transformerDirectives(),
