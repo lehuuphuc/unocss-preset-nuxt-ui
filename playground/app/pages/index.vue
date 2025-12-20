@@ -142,11 +142,11 @@ function handleToggleDarkMode() {
       </UButton>
     </div>
 
-    <UFieldGroup>
+    <!-- <UFieldGroup>
       <UInput color="neutral" variant="outline" placeholder="Enter token" />
 
       <UButton color="neutral" variant="subtle" icon="i-lucide-clipboard" />
-    </UFieldGroup>
+    </UFieldGroup> -->
 
     <div
       :class="[
