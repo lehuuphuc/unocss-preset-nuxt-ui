@@ -150,7 +150,6 @@ function handleToggleDarkMode() {
 
     <div
       :class="[
-        'flex',
         'translate-x-(--xxx)',
         'translate-y-(--xxx)',
         'transform-(--xxx)',
@@ -168,22 +167,9 @@ function handleToggleDarkMode() {
         'origin-(--xxx)',
         'gap-(--xxx)',
         '[--gap:--spacing(16)]',
-        'space-x--px',
-        'space-x--1px',
-        'space-y--px',
         '-space-x-px',
         '-space-y-px',
       ].join(' ')"
-    >
-      aaa
-    </div>
-    <div class="flex -space-x-px">
-      <div class="b-default b">
-        aaa
-      </div>
-      <div class="b-default b">
-        bbb
-      </div>
-    </div>
+    />
   </div>
 </template>

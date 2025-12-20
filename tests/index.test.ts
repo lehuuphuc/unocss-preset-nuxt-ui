@@ -5,7 +5,7 @@ import {
   createGenerator,
   transformerVariantGroup,
 } from 'unocss';
-import presetNuxtUI from '../src/index';
+import { presetNuxtUI, presetNuxtUIExtra } from '../src/index';
 
 function filterPreflightsContent(css: string) {
   return css;
@@ -21,6 +21,7 @@ async function createUno() {
       presetWind4({
         preflights: { reset: false, theme: 'on-demand' },
       }),
+      presetNuxtUIExtra(),
     ],
     transformers: [
       transformerVariantGroup(),
@@ -688,31 +689,104 @@ const testCases: TestCase[] = [
 `,
   },
   {
-    name: 'space--px',
+    name: 'space-x/y',
     classes: [
+      'space-x-px',
+      'space-y-px',
+      //
       'space-x--px',
       'space-y--px',
-      '-space-x--px',
-      '-space-y--px',
+      //
+      '-space-x-px',
+      '-space-y-px',
+
+      'space-x-4px',
+      'space-y-4px',
+      //
+      'space-x--4px',
+      'space-y--4px',
+      //
+      '-space-x-4px',
+      '-space-y-4px',
+
+      'space-x-4',
+      'space-y-4',
+      //
+      'space-x--4',
+      'space-y--4',
+      //
+      '-space-x-4',
+      '-space-y-4',
     ],
     snapshot: `
 "/* layer: properties */
-@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))){*, ::before, ::after, ::backdrop{--un-space-x-reverse:initial;--un-space-y-reverse:initial;}}
+@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))){*, ::before, ::after, ::backdrop{--un-space-x-reverse:0;--un-space-y-reverse:0;}}
 @property --un-space-x-reverse{syntax:"*";inherits:false;initial-value:0;}
 @property --un-space-y-reverse{syntax:"*";inherits:false;initial-value:0;}
+/* layer: theme */
+:root, :host { --spacing: 0.25rem; }
 /* layer: shortcuts */
 .space-x--px{
 :where(&>:not(:last-child)){--un-space-x-reverse:0;margin-inline-start: calc(-1px * var(--un-space-x-reverse));margin-inline-end: calc(-1px * calc(1 - var(--un-space-x-reverse)));}
 }
 .space-y--px{
 :where(&>:not(:last-child)){--un-space-y-reverse:0;margin-block-start: calc(-1px * var(--un-space-y-reverse));margin-block-end: calc(-1px * calc(1 - var(--un-space-y-reverse)));}
+}
+/* layer: default */
+.-space-x-4{
+:where(&>:not(:last-child)){--un-space-x-reverse:0;margin-inline-start:calc(calc(calc(var(--spacing) * 4) * var(--un-space-x-reverse)) * -1);margin-inline-end:calc(calc(calc(var(--spacing) * 4) * calc(1 - var(--un-space-x-reverse))) * -1);}
+}
+.-space-x-4px{
+:where(&>:not(:last-child)){--un-space-x-reverse:0;margin-inline-start:calc(calc(4px * var(--un-space-x-reverse)) * -1);margin-inline-end:calc(calc(4px * calc(1 - var(--un-space-x-reverse))) * -1);}
+}
+.-space-x-px{
+:where(&>:not(:last-child)){--un-space-x-reverse:0;margin-inline-start:calc(calc(1px * var(--un-space-x-reverse)) * -1);margin-inline-end:calc(calc(1px * calc(1 - var(--un-space-x-reverse))) * -1);}
+}
+.-space-y-4{
+:where(&>:not(:last-child)){--un-space-y-reverse:0;margin-block-start:calc(calc(calc(var(--spacing) * 4) * var(--un-space-y-reverse)) * -1);margin-block-end:calc(calc(calc(var(--spacing) * 4) * calc(1 - var(--un-space-y-reverse))) * -1);}
+}
+.-space-y-4px{
+:where(&>:not(:last-child)){--un-space-y-reverse:0;margin-block-start:calc(calc(4px * var(--un-space-y-reverse)) * -1);margin-block-end:calc(calc(4px * calc(1 - var(--un-space-y-reverse))) * -1);}
+}
+.-space-y-px{
+:where(&>:not(:last-child)){--un-space-y-reverse:0;margin-block-start:calc(calc(1px * var(--un-space-y-reverse)) * -1);margin-block-end:calc(calc(1px * calc(1 - var(--un-space-y-reverse))) * -1);}
+}
+.space-x--4{
+:where(&>:not(:last-child)){--un-space-x-reverse:0;margin-inline-start: calc(calc(var(--spacing) * -4) * var(--un-space-x-reverse));margin-inline-end: calc(calc(var(--spacing) * -4) * calc(1 - var(--un-space-x-reverse)));}
+}
+.space-x--4px{
+:where(&>:not(:last-child)){--un-space-x-reverse:0;margin-inline-start: calc(-4px * var(--un-space-x-reverse));margin-inline-end: calc(-4px * calc(1 - var(--un-space-x-reverse)));}
+}
+.space-x-4{
+:where(&>:not(:last-child)){--un-space-x-reverse:0;margin-inline-start:calc(calc(var(--spacing) * 4) * var(--un-space-x-reverse));margin-inline-end:calc(calc(var(--spacing) * 4) * calc(1 - var(--un-space-x-reverse)));}
+}
+.space-x-4px{
+:where(&>:not(:last-child)){--un-space-x-reverse:0;margin-inline-start:calc(4px * var(--un-space-x-reverse));margin-inline-end:calc(4px * calc(1 - var(--un-space-x-reverse)));}
+}
+.space-x-px{
+:where(&>:not(:last-child)){--un-space-x-reverse:0;margin-inline-start:calc(1px * var(--un-space-x-reverse));margin-inline-end:calc(1px * calc(1 - var(--un-space-x-reverse)));}
+}
+.space-y--4{
+:where(&>:not(:last-child)){--un-space-y-reverse:0;margin-block-start: calc(calc(var(--spacing) * -4) * var(--un-space-y-reverse));margin-block-end: calc(calc(var(--spacing) * -4) * calc(1 - var(--un-space-y-reverse)));}
+}
+.space-y--4px{
+:where(&>:not(:last-child)){--un-space-y-reverse:0;margin-block-start: calc(-4px * var(--un-space-y-reverse));margin-block-end: calc(-4px * calc(1 - var(--un-space-y-reverse)));}
+}
+.space-y-4{
+:where(&>:not(:last-child)){--un-space-y-reverse:0;margin-block-start:calc(calc(var(--spacing) * 4) * var(--un-space-y-reverse));margin-block-end:calc(calc(var(--spacing) * 4) * calc(1 - var(--un-space-y-reverse)));}
+}
+.space-y-4px{
+:where(&>:not(:last-child)){--un-space-y-reverse:0;margin-block-start:calc(4px * var(--un-space-y-reverse));margin-block-end:calc(4px * calc(1 - var(--un-space-y-reverse)));}
+}
+.space-y-px{
+:where(&>:not(:last-child)){--un-space-y-reverse:0;margin-block-start:calc(1px * var(--un-space-y-reverse));margin-block-end:calc(1px * calc(1 - var(--un-space-y-reverse)));}
 }"
 `,
   },
 ];
 
-// describe.each(testCases)('unocss-preset-nuxt-ui', (testCase) => {
-describe.each([testCases[testCases.length - 1]])('unocss-preset-nuxt-ui', (testCase) => {
+describe.each(testCases)('unocss-preset-nuxt-ui', (testCase) => {
+// describe.each([testCases[testCases.length - 1]])('unocss-preset-nuxt-ui', (testCase) => {
   it(testCase.name, async () => {
     const uno = await createUno();
     let { css } = await uno.generate(testCase.classes);

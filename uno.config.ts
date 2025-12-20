@@ -6,7 +6,7 @@ import {
 } from 'unocss';
 
 // import presetNuxtUI from './dist';
-import presetNuxtUI from './src';
+import { presetNuxtUI, presetNuxtUIExtra } from './src';
 
 export const configData = {
   content: {
@@ -24,6 +24,7 @@ export const configData = {
       preflights: { reset: true, theme: 'on-demand' },
       dark: { dark: '.dark', light: '.light' },
     }),
+    presetNuxtUIExtra(),
   ],
   transformers: [
     transformerDirectives(),

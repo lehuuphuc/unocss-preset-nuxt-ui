@@ -1,6 +1,7 @@
 import type { Preset, RuleContext, UtilObject } from '@unocss/core';
 import type { Theme } from '@unocss/preset-wind4';
 import { definePreset } from '@unocss/core';
+import { notLastChildSelectorVariant } from '@unocss/preset-wind4/rules';
 import {
   colorCSSGenerator,
   defineProperty,
@@ -27,7 +28,7 @@ export interface PresetOptions {
   }
 }
 
-export default definePreset((options: PresetOptions = {}) => {
+export const presetNuxtUI = definePreset((options: PresetOptions = {}) => {
   const colorSpace = options.colorSpace || 'oklab';
   const preflights: PresetOptions['preflights'] = options.preflights === false
     ? undefined
@@ -83,22 +84,6 @@ export default definePreset((options: PresetOptions = {}) => {
   --ui-border-muted: var(--ui-color-neutral-700);
   --ui-border-accented: var(--ui-color-neutral-700);
   --ui-border-inverted: var(--color-white);
-}
-
-.-space-x-px {
-  :where(&>:not(:last-child)) {
-    --un-space-x-reverse: 0;
-    margin-inline-start: calc(-1px * var(--un-space-x-reverse));
-    margin-inline-end: calc(-1px * calc(1 - var(--un-space-x-reverse)));
-  }
-}
-
-.-space-y-px {
-  :where(&>:not(:last-child)) {
-    --un-space-y-reverse: 0;
-    margin-block-start: calc(-1px * var(--un-space-y-reverse));
-    margin-block-end: calc(-1px * calc(1 - var(--un-space-y-reverse)));
-  }
 }
 /* unocss-nuxt-ui preflight end */`;
             },
@@ -289,10 +274,6 @@ export default definePreset((options: PresetOptions = {}) => {
       ['text-md', 'text-base'],
       ['column-1', 'columns-1'],
       ['align-center', 'align-middle'],
-      ['space-x--px', 'space-x--1px'],
-      ['space-y--px', 'space-y--1px'],
-      // ['-space-x-px', 'space-x--1px'], // not working, just for adding @property
-      // ['-space-y-px', 'space-y--1px'], // not working, just for adding @property
     ],
     rules: [
       // text-dimmed, text-dimmed/50, ...
@@ -837,6 +818,67 @@ export default definePreset((options: PresetOptions = {}) => {
     ],
     safelist,
     postprocess: [postProcessFn],
+  };
+});
+
+export const presetNuxtUIExtra = definePreset(() => {
+  return {
+    name: 'unocss-preset-nuxt-ui-extra',
+    shortcuts: [
+      ['space-x--px', 'space-x--1px'],
+      ['space-y--px', 'space-y--1px'],
+    ],
+    rules: [
+      // space-x-px, space-y-px (-space-x-px, -space-y-px)
+      [
+        /^space-([xy])-px$/,
+        ([matcher, direction], configs) => {
+          const inlineOrBlock = direction === 'x' ? 'inline' : 'block';
+          return [
+            defineProperty(`--un-space-${direction}-reverse`, { syntax: '*', inherits: false, initialValue: '0' }),
+            {
+              [configs.symbols.variants]: [notLastChildSelectorVariant(matcher)],
+              [`--un-space-${direction}-reverse`]: '0',
+              [`margin-${inlineOrBlock}-start`]: `calc(1px * var(--un-space-${direction}-reverse))`,
+              [`margin-${inlineOrBlock}-end`]: `calc(1px * calc(1 - var(--un-space-${direction}-reverse)))`,
+            },
+          ];
+        },
+        { autocomplete: ['space-(x|y)-px', '-space-(x|y)-px'] },
+      ],
+      // space-x-<number>px, space-y-<number>px (-space-x-<number>px, -space-y-<number>px)
+      [
+        /^space-([xy])-(\d+)px$/,
+        ([matcher, direction, size], configs) => {
+          const inlineOrBlock = direction === 'x' ? 'inline' : 'block';
+          return [
+            defineProperty(`--un-space-${direction}-reverse`, { syntax: '*', inherits: false, initialValue: '0' }),
+            {
+              [configs.symbols.variants]: [notLastChildSelectorVariant(matcher)],
+              [`--un-space-${direction}-reverse`]: '0',
+              [`margin-${inlineOrBlock}-start`]: `calc(${size}px * var(--un-space-${direction}-reverse))`,
+              [`margin-${inlineOrBlock}-end`]: `calc(${size}px * calc(1 - var(--un-space-${direction}-reverse)))`,
+            },
+          ];
+        },
+      ],
+      // space-x-<number>, space-y-<number> (-space-x-<number>, -space-y-<number>)
+      [
+        /^space-([xy])-(\d+)$/,
+        ([matcher, direction, size], configs) => {
+          const inlineOrBlock = direction === 'x' ? 'inline' : 'block';
+          return [
+            defineProperty(`--un-space-${direction}-reverse`, { syntax: '*', inherits: false, initialValue: '0' }),
+            {
+              [configs.symbols.variants]: [notLastChildSelectorVariant(matcher)],
+              [`--un-space-${direction}-reverse`]: '0',
+              [`margin-${inlineOrBlock}-start`]: `calc(calc(var(--spacing) * ${size}) * var(--un-space-${direction}-reverse))`,
+              [`margin-${inlineOrBlock}-end`]: `calc(calc(var(--spacing) * ${size}) * calc(1 - var(--un-space-${direction}-reverse)))`,
+            },
+          ];
+        },
+      ],
+    ],
   };
 });
 
