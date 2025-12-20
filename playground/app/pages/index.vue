@@ -142,8 +142,15 @@ function handleToggleDarkMode() {
       </UButton>
     </div>
 
+    <UFieldGroup>
+      <UInput color="neutral" variant="outline" placeholder="Enter token" />
+
+      <UButton color="neutral" variant="subtle" icon="i-lucide-clipboard" />
+    </UFieldGroup>
+
     <div
       :class="[
+        'flex',
         'translate-x-(--xxx)',
         'translate-y-(--xxx)',
         'transform-(--xxx)',
@@ -161,7 +168,22 @@ function handleToggleDarkMode() {
         'origin-(--xxx)',
         'gap-(--xxx)',
         '[--gap:--spacing(16)]',
+        'space-x--px',
+        'space-x--1px',
+        'space-y--px',
+        '-space-x-px',
+        '-space-y-px',
       ].join(' ')"
-    />
+    >
+      aaa
+    </div>
+    <div class="flex -space-x-px">
+      <div class="b-default b">
+        aaa
+      </div>
+      <div class="b-default b">
+        bbb
+      </div>
+    </div>
   </div>
 </template>

@@ -687,10 +687,32 @@ const testCases: TestCase[] = [
 }"
 `,
   },
+  {
+    name: 'space--px',
+    classes: [
+      'space-x--px',
+      'space-y--px',
+      '-space-x--px',
+      '-space-y--px',
+    ],
+    snapshot: `
+"/* layer: properties */
+@supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))){*, ::before, ::after, ::backdrop{--un-space-x-reverse:initial;--un-space-y-reverse:initial;}}
+@property --un-space-x-reverse{syntax:"*";inherits:false;initial-value:0;}
+@property --un-space-y-reverse{syntax:"*";inherits:false;initial-value:0;}
+/* layer: shortcuts */
+.space-x--px{
+:where(&>:not(:last-child)){--un-space-x-reverse:0;margin-inline-start: calc(-1px * var(--un-space-x-reverse));margin-inline-end: calc(-1px * calc(1 - var(--un-space-x-reverse)));}
+}
+.space-y--px{
+:where(&>:not(:last-child)){--un-space-y-reverse:0;margin-block-start: calc(-1px * var(--un-space-y-reverse));margin-block-end: calc(-1px * calc(1 - var(--un-space-y-reverse)));}
+}"
+`,
+  },
 ];
 
-describe.each(testCases)('unocss-preset-nuxt-ui', (testCase) => {
-// describe.each([testCases[testCases.length - 1]])('unocss-preset-nuxt-ui', (testCase) => {
+// describe.each(testCases)('unocss-preset-nuxt-ui', (testCase) => {
+describe.each([testCases[testCases.length - 1]])('unocss-preset-nuxt-ui', (testCase) => {
   it(testCase.name, async () => {
     const uno = await createUno();
     let { css } = await uno.generate(testCase.classes);
